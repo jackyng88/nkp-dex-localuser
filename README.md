@@ -37,10 +37,10 @@ data:
 ```
 
 - Important things to note:
-- - `email` will be the login value or userid. It's usually a password but it can be a regular string.
-- - `hash` is the Bcrypt encrypted hash value we created earlier.
-- - `username` not particularly important but it will be the display name in the NKP web console.
-- - `userID` just a random string value you can create to be a unique identifier for the user.
+    - `email` will be the login value or userid. It's usually a password but it can be a regular string.
+    - `hash` is the Bcrypt encrypted hash value we created earlier.
+    - `username` not particularly important but it will be the display name in the NKP web console.
+    - `userID` just a random string value you can create to be a unique identifier for the user.
 
 - Remember to save the edited YAML file and exit.
 
@@ -82,7 +82,7 @@ time=2026-02-27T16:39:21.271Z level=INFO msg="config connector: local passwords 
 ```
 
 - Log into your NKP web console and login with the newly created local user
-- - `Username` will be the value of `email` we added to the configmap earlier.
-- - `Password` will not be the Bcrypt hash but the value we used to generate the hash. In my previous example I used `password123`.
+    - `Username` will be the value of `email` we added to the configmap earlier.
+    - `Password` will not be the Bcrypt hash but the value we used to generate the hash. In my previous example I used `password123`.
 
 - You have successfully added a new local user via Dex.
