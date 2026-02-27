@@ -7,14 +7,19 @@
 
 ## Steps:
 - Run the following command on a Linux jumphost or system that has access to the NKP/Kubernetes cluster via Kubeconfig. 
+
 ```kubectl get cm -n kommander | grep dex```
+
 - It should show a file named dex-kommander-overrides. This configmap has override values for dex.
 - Run the following command. Replace password123 with whatever password you would like. It's a Bcrypt encrypted hash that Dex accepts and requires.
+
 ```echo password123 | htpasswd -BinC 10 admin | cut -d: -f2```
+
 - You will get a value like "$2y$10$unM8gxYTH.1EdxR1.:
 ThxYOI5zhFvOV9nCwt093KEPgiEI2EWujkfO". Save this value.
 
 - We will now need to update the `dex-kommander-overrides` configmap file. Run the command:
+
 ```kubectl edit configmap dex-kommander-overrides -n kommander```
 
 - Once in the text editor, you should see in the yaml the section `data.values.yaml.config`. It should have an issuer section by default. We will need to edit it to include a new `staticPasswords` section with a few subsections like the following:
@@ -40,6 +45,7 @@ data:
 - Remember to save the edited YAML file and exit.
 
 - Next we will have to assign one of the pre-existing admin cluster role bindings to the user. You can always create more roles or to assign different roles. Important: Update the `--user=` flag with a value that is the same value as `email` in the previous step. 
+
 
 ```
 kubectl create clusterrolebinding local-admin-binding \
